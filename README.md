@@ -1,16 +1,74 @@
-# React + Vite
+# 🎓 LMS Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern Learning Management System (LMS) built with React.js, Vite, Firebase Authentication, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* User Registration & Login
+* Firebase Authentication
+* Explore Courses
+* Course Details Page
+* Course Enrollment & Unenrollment
+* Student Dashboard
+* Progress Tracking
+* Certificate Generation
+* Admin Panel
+* Add & Delete Courses
+* Responsive Design
 
-## React Compiler
+## 🛠️ Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* React.js
+* Vite
+* Tailwind CSS
+* Firebase Authentication
+* React Router DOM
+* Local Storage
 
-## Expanding the ESLint configuration
+## 📂 Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+src/
+├── components/
+│   └── Navbar.jsx
+├── pages/
+│   ├── Home.jsx
+│   ├── Login.jsx
+│   ├── Register.jsx
+│   ├── Courses.jsx
+│   ├── CourseDetails.jsx
+│   ├── Dashboard.jsx
+│   ├── Profile.jsx
+│   ├── Certificate.jsx
+│   └── Admin.jsx
+└── App.jsx
+```
+
+## ⚡ Installation
+
+```bash
+git clone https://github.com/yourusername/lms-portal.git
+
+cd lms-portal
+
+npm install
+
+npm run dev
+```
+
+## 🎯 Future Enhancements
+
+* AI Study Assistant
+* Online Quiz System
+* PDF Certificate Download
+* Course Categories
+* Dark Mode
+* Firebase Firestore Database
+
+## 👨‍💻 Author
+
+Vinayak
+
+## ⭐ If you like this project
+
+Give this repository a Star ⭐ on GitHub.
