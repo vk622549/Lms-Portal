@@ -7,6 +7,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 function Login() {
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
+
 const navigate = useNavigate();
 
 const handleLogin = async (e) => {
@@ -14,9 +15,24 @@ e.preventDefault();
 
 
 try {
-  await signInWithEmailAndPassword(auth, email, password);
+  await signInWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+
+  localStorage.setItem(
+    "isLoggedIn",
+    "true"
+  );
+
+  localStorage.setItem(
+    "userEmail",
+    email
+  );
 
   alert("🎉 Login Successful!");
+
   navigate("/dashboard");
 } catch (error) {
   alert(error.message);
@@ -27,6 +43,7 @@ try {
 
 return (
 <> <Navbar />
+
 
   <div className="min-h-screen bg-gradient-to-r from-blue-900 to-indigo-900 flex justify-center items-center">
 
@@ -47,7 +64,9 @@ return (
           placeholder="Enter Email"
           className="w-full border p-3 rounded-lg mb-4"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) =>
+            setEmail(e.target.value)
+          }
           required
         />
 
@@ -56,7 +75,9 @@ return (
           placeholder="Enter Password"
           className="w-full border p-3 rounded-lg mb-4"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) =>
+            setPassword(e.target.value)
+          }
           required
         />
 
@@ -83,6 +104,7 @@ return (
 
   </div>
 </>
+
 
 );
 }

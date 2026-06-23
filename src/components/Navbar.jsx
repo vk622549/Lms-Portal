@@ -1,44 +1,77 @@
 import { Link } from "react-router-dom";
 
 function Navbar() {
-return ( <nav className="bg-blue-900 text-white shadow-lg"> <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+  const isLoggedIn =
+    localStorage.getItem("isLoggedIn") === "true";
 
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
 
-    <h1 className="text-2xl font-bold">
-      🎓 LMS Portal
-    </h1>
+    alert("👋 Logged Out Successfully!");
 
-    <div className="flex gap-6 font-medium">
+    window.location.href = "/";
+  };
 
-      <Link to="/" className="hover:text-yellow-300">
-        Home
+  return (
+    <nav className="bg-blue-900 text-white px-8 py-4 flex justify-between items-center">
+
+      <Link
+        to="/"
+        className="text-2xl font-bold"
+      >
+        🎓 LMS Portal
       </Link>
 
-      <Link to="/courses" className="hover:text-yellow-300">
-        Courses
-      </Link>
+      <div className="flex gap-5 items-center">
 
-      <Link to="/dashboard" className="hover:text-yellow-300">
-        Dashboard
-      </Link>
+        <Link to="/">Home</Link>
 
-      <Link to="/profile" className="hover:text-yellow-300">
-        Profile
-      </Link>
+        <Link to="/courses">Courses</Link>
 
-      <Link to="/admin" className="hover:text-yellow-300">
-        Admin
-      </Link>
+        {isLoggedIn && (
+          <>
+            <Link to="/dashboard">
+              Dashboard
+            </Link>
 
-      <Link to="/login" className="hover:text-yellow-300">
-        Login
-      </Link>
+            <Link to="/profile">
+              Profile
+            </Link>
 
-    </div>
-  </div>
-</nav>
+            <Link to="/admin">
+              Admin
+            </Link>
+          </>
+        )}
 
-);
+        {isLoggedIn ? (
+          <button
+            onClick={handleLogout}
+            className="bg-red-600 px-4 py-2 rounded hover:bg-red-700"
+          >
+            Logout
+          </button>
+        ) : (
+          <>
+            <Link
+              to="/login"
+              className="bg-green-600 px-4 py-2 rounded hover:bg-green-700"
+            >
+              Login
+            </Link>
+
+            <Link
+              to="/register"
+              className="bg-yellow-500 px-4 py-2 rounded hover:bg-yellow-600"
+            >
+              Register
+            </Link>
+          </>
+        )}
+
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;
