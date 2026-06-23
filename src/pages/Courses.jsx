@@ -12,16 +12,14 @@ const defaultCourses = [
 {
 id: 1,
 title: "Web Development",
-description:
-"Learn HTML, CSS, JavaScript and React.",
+description: "Learn HTML, CSS, JavaScript and React.",
 image:
 "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600",
 },
 {
 id: 2,
 title: "Python Programming",
-description:
-"Master Python from beginner to advanced.",
+description: "Master Python from beginner to advanced.",
 image:
 "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600",
 },
@@ -84,10 +82,15 @@ const enrolledCourses =
 JSON.parse(localStorage.getItem("enrolledCourses")) || [];
 
 const handleEnroll = (course) => {
-const alreadyEnrolled = enrolledCourses.some(
-(item) => item.id === course.id
-);
+if (!isLoggedIn) {
+alert("Please Login First!");
+return;
+}
 
+
+const alreadyEnrolled = enrolledCourses.some(
+  (item) => item.id === course.id
+);
 
 if (alreadyEnrolled) {
   alert("Already Enrolled!");
@@ -109,14 +112,15 @@ localStorage.setItem(
 
 alert("🎉 Enrollment Successful!");
 window.location.reload();
-```
+
 
 };
 
 const handleUnenroll = (courseId) => {
 const updatedCourses =
 enrolledCourses.filter(
-(course) => course.id !== courseId
+(item) =>
+Number(item.id) !== Number(courseId)
 );
 
 
@@ -127,7 +131,7 @@ localStorage.setItem(
 
 alert("❌ Course Unenrolled!");
 window.location.reload();
-```
+
 
 };
 
@@ -140,6 +144,7 @@ course.title
 
 return (
 <> <Navbar />
+
 
   <div className="bg-gray-100 min-h-screen p-10">
 
@@ -162,7 +167,6 @@ return (
     <div className="grid md:grid-cols-4 gap-6">
 
       {filteredCourses.map((course) => {
-
         const isEnrolled =
           enrolledCourses.some(
             (item) =>
@@ -191,7 +195,11 @@ return (
               </p>
 
               <Link
-                to={`/course/${course.id}`}
+                to={
+                  isLoggedIn
+                    ? `/course/${course.id}`
+                    : "/login"
+                }
                 className="block mt-3 text-blue-600 font-semibold"
               >
                 View Details →
@@ -232,7 +240,6 @@ return (
     </div>
   </div>
 </>
-
 
 );
 }
